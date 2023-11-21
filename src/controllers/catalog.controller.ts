@@ -13,6 +13,12 @@ export type IProduct = {
 export class CatalogController {
   constructor(private readonly CatalogService: CatalogService) {}
 
+  @Get('/allSections')
+  async getAllSections(){
+    const data = await this.CatalogService.getAllSections();
+    return data; 
+  }
+  
   @Get('/:sectionCode')
   getSectionProducts(@Param('sectionCode') sectionCode: string) {
     if(!sectionCode){
@@ -30,6 +36,8 @@ export class CatalogController {
     const data = await this.CatalogService.getProducts();
     return data; 
   }
+
+
 
   @Post('/add')
   addProduct(@Body() { name, description, price }) {

@@ -12,3 +12,8 @@ export const Category = sequelize.define('category', {
   description: DataTypes.STRING,
   slug: DataTypes.STRING,
 });
+
+Category.hasMany(Category, {
+  as: 'subcategories',
+  foreignKey: 'id',
+});
