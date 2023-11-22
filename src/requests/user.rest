@@ -1,0 +1,8 @@
+POST http://localhost:3000/user/add
+Content-Type: application/json
+
+{
+	"login":"admin",
+	"password":"password",
+	"role":"admin"
+}

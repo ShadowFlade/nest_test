@@ -18,6 +18,12 @@ export class CatalogController {
   async deleteProduct(@Param('id') id: number) {
     return await this.CatalogService.deleteProduct(id);
   }
+
+  @Post('/update/:id')
+  async updateProduct(@Param('id') id: number, @Body() data) {
+    return await this.CatalogService.updateProduct(data);
+  }
+
   @Get('/allSections')
   async getAllSections(){
     const data = await this.CatalogService.getAllSections();

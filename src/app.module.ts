@@ -5,10 +5,26 @@ import { CatalogController } from './controllers/catalog.controller';
 import { CatalogService } from './services/catalog.service';
 import { SectionService } from './services/section.service';
 import { SectionsController } from './controllers/sections.controller';
+import { UserController } from './controllers/user.controller';
+import { UserService } from './services/user.service';
+import { AuthController } from './controllers/Auth.controller';
+import { AuthService } from './services/auth.service';
 
 @Module({
   imports: [],
-  controllers: [AppController, CatalogController, SectionsController],
-  providers: [AppService, CatalogService, SectionService],
+  controllers: [
+    AppController,
+    CatalogController,
+    SectionsController,
+    UserController,
+    AuthController,
+  ],
+  providers: [
+    AppService,
+    CatalogService,
+    SectionService,
+    UserService,
+    AuthService,
+  ],
 })
 export class AppModule {}

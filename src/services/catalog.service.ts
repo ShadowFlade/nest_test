@@ -103,4 +103,19 @@ export class CatalogService {
     }
     return Product.create({ name, description, price });
   }
+
+  updateProduct({ id, name, description, price }) {
+    if (!name) {
+      return;
+    }
+
+    return Product.update(
+      { name, description, price },
+      {
+        where: {
+          id,
+        },
+      },
+    );
+  }
 }
