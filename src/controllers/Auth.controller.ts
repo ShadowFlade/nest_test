@@ -8,6 +8,7 @@ import {
   Res,
 } from '@nestjs/common';
 import { Response } from 'express';
+import jwt from 'jsonwebtoken';
 import { AuthService } from '../services/auth.service';
 
 @Controller('')
@@ -16,12 +17,13 @@ export class AuthController {
 
   @Post('login')
   async login(@Body() data, @Res() res: Response) {
-    const isAuthed = await this.AuthService.auth({ login: data.login, password: data.password });
-	if(isAuthed){
-		return res.status(200).send('Ok');
-	} else {
+    const authData = await this.AuthService.auth({ login: data.login, password: data.password });
+	if(!authData){
 		throw new HttpException('Forbidden', HttpStatus.FORBIDDEN);
-	}
+	} 
+
+	res.json(authData.accessToken);
+
   }
 
 //   @Post('/register')
