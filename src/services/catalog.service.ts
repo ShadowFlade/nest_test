@@ -1,6 +1,6 @@
-import { Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { Product } from '../models/Product';
-import { FindOptions, Op, Sequelize } from 'sequelize';
+import { FindOptions, Op, Sequelize, DATE } from 'sequelize';
 import { SectionService } from './section.service';
 import { Category, ICategory } from '../models/Category';
 import sequelize from 'sequelize/types/sequelize';
@@ -97,11 +97,13 @@ export class CatalogService {
     });
   }
 
-  addProduct({ name, description, price }) {
+  async addProduct({ name, description, price }) {
     if (!name) {
-      return;
+      throw new HttpException('No product name',HttpStatus.BAD_REQUEST);
     }
-    return Product.create({ name, description, price });
+    const createInfo = await Product.create({ name, description, price });
+    console.log(createInfo,' createInfo');
+    return createInfo;
   }
 
   updateProduct({ id, name, description, price }) {

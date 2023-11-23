@@ -8,6 +8,8 @@ export type IProduct = {
   price: number;
   description: string;
   product_category: string;
+  createdAt: string;
+  updatedAt: string;
 };
 
 @Controller('catalog')
@@ -47,8 +49,9 @@ export class CatalogController {
 
   @Post('/add')
   @UseGuards(AuthGuard)
-  addProduct(@Body() { name, description, price }) {
-    this.CatalogService.addProduct({ name, description, price });
+  async addProduct(@Body() { name, description, price }) {
+    
+    return await this.CatalogService.addProduct({ name, description, price });
   }
 
   @Get('')

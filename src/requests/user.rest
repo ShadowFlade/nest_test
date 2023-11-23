@@ -2,7 +2,18 @@ POST http://localhost:3000/user/add
 Content-Type: application/json
 
 {
-	"login":"admin",
+	"login":"admin2",
+	"password":"password",
+	"role":"admin"
+}
+
+###
+
+POST http://localhost:3000/register
+Content-Type: application/json
+
+{
+	"login":"admin3",
 	"password":"password",
 	"role":"admin"
 }

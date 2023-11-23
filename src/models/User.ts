@@ -14,10 +14,10 @@ type IRole = typeof role[keyof typeof role];
 
 export type IUser = {
 	login: string,
-	name: string,
+	name?: string,
 	password: string,
-	role: IRole,
-	refreshToken: string
+	role?: IRole,
+	refreshToken?: string
 }
 
 export const User = sequelize.define('user', {
