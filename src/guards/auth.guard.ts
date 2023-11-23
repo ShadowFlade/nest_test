@@ -21,7 +21,6 @@ export class AuthGuard implements CanActivate {
 
   validateRequest(request: Request) {
     const authHeader = request.headers['authorization'];
-    console.log(authHeader,' authheader');
     const token = authHeader && authHeader.split(' ')[1];
     if (!token)
       throw new HttpException('Unauthorized', HttpStatus.UNAUTHORIZED);

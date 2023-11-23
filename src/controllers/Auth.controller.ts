@@ -27,7 +27,7 @@ export class AuthController {
       throw new HttpException('Forbidden', HttpStatus.FORBIDDEN);
     }
 
-    res.json(authData.accessToken);
+    res.json(authData);
   }
 
   //   @Post('/register')
@@ -37,6 +37,6 @@ export class AuthController {
 
   @Post('token')
   async regenAccessToken(@Body() body, @Req() req, @Res() res: Response) {
-    return this.AuthService.regenAccessToken(body, req, res);
+    return this.AuthService.regenAccessToken(body, res);
   }
 }

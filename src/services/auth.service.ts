@@ -4,13 +4,20 @@ import sequelize from 'sequelize/types/sequelize';
 import { IUser, User } from '../models/User';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
+import { Response } from 'express';
+
 import { log } from 'console';
 
 @Injectable()
 export class AuthService {
 
   async auth({ login, password }) {
-    const user: IUser = (await User.findOne({ where: { login } })).dataValues;
+    const user: IUser = (await User.findOne({ 
+      where: { login },
+      attributes : ['id','login','password','role'],
+    },
+      
+      )).dataValues;
 
     if (!user) {
       throw new HttpException('Forbidden', HttpStatus.FORBIDDEN);
@@ -19,44 +26,44 @@ export class AuthService {
     const isLegitPassword = await bcrypt.compare(password, user.password);
 
     if (!isLegitPassword) {
-      return false;
+      throw new HttpException('Forbidden', HttpStatus.FORBIDDEN);
     }
 
     const accessToken = this.generateAccessToken(user);
 
     const refreshToken = jwt.sign(user, process.env.REFRESH_SECRET_TOKEN);
-    User.update({ refreshToken }, { where: { login } });
+    await User.update({ refreshToken }, { where: { login } });
     return { accessToken, refreshToken };
   }
 
   generateAccessToken(user){
     return jwt.sign(user, process.env.ACCESS_SECRET_TOKEN, {
-      expiresIn: '10s',
+      expiresIn: '1m',
     });
   }
 
-  async regenAccessToken(body, req, res){
+  async regenAccessToken(body, res : Response){
     const refreshToken = body.token;
     if (!refreshToken)
-      throw new HttpException('FORBIDDEN', HttpStatus.FORBIDDEN);
+      throw new HttpException('FORBIDDEN1', HttpStatus.FORBIDDEN);
     const { dataValues } = await User.findOne({
       where: {
-        login: req.user.login,
+        refreshToken,
       },
     });
     const refreshTokenDB = dataValues.refreshToken;
-    if (refreshToken == refreshTokenDB)
-      throw new HttpException('FORBIDDEN', HttpStatus.FORBIDDEN);
+
+    if(!refreshTokenDB) throw new HttpException('FORBIDDEN2', HttpStatus.FORBIDDEN);
 
     return jwt.verify(
       refreshToken,
       process.env.REFRESH_SECRET_TOKEN,
       (err, user: IUser) => {
-        if (err) throw new HttpException('FORBIDDEN', HttpStatus.FORBIDDEN);
+        if (err) throw new HttpException('FORBIDDEN4', HttpStatus.FORBIDDEN);
         const accessToken = this.generateAccessToken({
           login: user.login,
         });
-        return accessToken;
+        res.json({accessToken});
       },
     );
   }
