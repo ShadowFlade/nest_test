@@ -21,7 +21,6 @@ export const Category = sequelize.define('category', {
   subcategories: DataTypes.JSONB
 });
 
-// Category.hasMany(Category, {
-//   as: 'Subcategories',
-//   foreignKey: 'id',
-// });
+Category.hasMany(Category, {
+  foreignKey: 'parentCategory',
+});

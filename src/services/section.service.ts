@@ -4,12 +4,11 @@ import { FindOptions } from 'sequelize';
 
 @Injectable()
 export class SectionService {
-  
   getSections(limit = 10) {
     return Category.findAll({ limit });
   }
 
-  deleteCategory(id) {
+  delete(id) {
     if (!id) {
       return;
     }
@@ -18,10 +17,25 @@ export class SectionService {
     });
   }
 
-  addCategory({ name, description, price, slug }) {
+  add({ name, description, price, slug }) {
     if (!name || !slug) {
       return;
     }
     return Category.create({ name, description, price, slug });
+  }
+
+  get(id) {
+    return Category.findOne({ where: { id } });
+  }
+
+  getWithParent(id) {
+    return Category.findOne({
+      where: { id },
+      include: [
+        {
+          model: Category,
+        },
+      ],
+    });
   }
 }
