@@ -1,5 +1,6 @@
-import { Body, Controller, Get, Param, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, UseGuards } from '@nestjs/common';
 import { CatalogService } from '../services/catalog.service';
+import { AuthGuard } from '../guards/auth.guard';
 
 export type IProduct = {
   id: number;
@@ -15,11 +16,13 @@ export class CatalogController {
   
   
   @Post('/delete/:id')
+  @UseGuards(AuthGuard)
   async deleteProduct(@Param('id') id: number) {
     return await this.CatalogService.deleteProduct(id);
   }
 
   @Post('/update/:id')
+  @UseGuards(AuthGuard)
   async updateProduct(@Param('id') id: number, @Body() data) {
     return await this.CatalogService.updateProduct(data);
   }
@@ -35,7 +38,6 @@ export class CatalogController {
     if(!sectionCode){
       return;
     }
-    console.log('section code')
 
     return this.CatalogService.getProducts({
       where: { product_category: sectionCode },
@@ -43,10 +45,8 @@ export class CatalogController {
   }
 
 
-
-
-
   @Post('/add')
+  @UseGuards(AuthGuard)
   addProduct(@Body() { name, description, price }) {
     this.CatalogService.addProduct({ name, description, price });
   }

@@ -1,0 +1,13 @@
+POST http://localhost:3000/login
+Content-Type: application/json
+
+{"login": "admin","password": "password"}
+
+###
+
+POST http://localhost:3000/catalog/delete/66  HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MzkzNTYzLCJsb2dpbiI6ImFkbWluIiwibmFtZSI6bnVsbCwicGFzc3dvcmQiOiIkMmIkMDQkODJCZTk4bDJqa2JvYURkUWFCT2g5ZWRhZWNhS1djSmVBZVNNWUhZL2JQUzhQVXA3WjlSeXkiLCJyb2xlIjoiYWRtaW4iLCJjcmVhdGVkQXQiOiIyMDIzLTExLTIyVDE4OjE5OjI0LjU2OVoiLCJ1cGRhdGVkQXQiOiIyMDIzLTExLTIyVDE4OjE5OjI0LjU2OVoiLCJpYXQiOjE3MDA3MjgyOTAsImV4cCI6MTcwMDcyODMwMH0.0ALne-t21B52QX5a11nNvtjYwul8Rvh-CH3NVIBG8s4
+
+
+
+
