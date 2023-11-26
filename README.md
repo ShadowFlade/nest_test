@@ -5,6 +5,7 @@
 ```bash
 $ git clone
 $ npm install
+$ npm run db:create
 $ npm run db:migrate
 $ npm run db:seeds
 ```

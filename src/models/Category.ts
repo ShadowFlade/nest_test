@@ -18,7 +18,8 @@ export const Category = sequelize.define('category', {
   name: DataTypes.STRING,
   description: DataTypes.STRING,
   slug: DataTypes.STRING,
-  subcategories: DataTypes.JSONB
+  subcategories: DataTypes.JSONB,
+  parentCategory: DataTypes.INTEGER
 });
 
 Category.hasMany(Category, {

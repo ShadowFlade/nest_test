@@ -1,9 +1,0 @@
-{
-	"development": {
-	  "username": "postgres",
-	  "password": "postgres",
-	  "database": "nest_test",
-	  "host": "localhost",
-	  "dialect": "postgres"
-	}
-  }

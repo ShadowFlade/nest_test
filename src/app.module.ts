@@ -9,6 +9,8 @@ import { UserController } from './controllers/user.controller';
 import { UserService } from './services/user.service';
 import { AuthController } from './controllers/Auth.controller';
 import { AuthService } from './services/auth.service';
+import { Sequelize } from 'sequelize';
+import { IDialect } from './main';
 
 @Module({
   imports: [],
@@ -27,4 +29,7 @@ import { AuthService } from './services/auth.service';
     AuthService,
   ],
 })
+
+
+
 export class AppModule {}

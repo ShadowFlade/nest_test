@@ -2,7 +2,7 @@
   "development": {
     "username": "postgres",
     "password": "postgres",
-    "database": "nest_test",
+    "database": "nest_test3",
     "host": "localhost",
     "dialect": "postgres"
   }
