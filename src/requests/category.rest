@@ -1,1 +1,5 @@
-GET http://localhost:3000/section/parent/90
+GET http://localhost:4000/section/parent/90
+
+###
+
+GET http://localhost:4000/section/children/90

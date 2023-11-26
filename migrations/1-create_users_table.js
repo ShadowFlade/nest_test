@@ -40,12 +40,14 @@ module.exports = {
         allowNull: false,
         type: Sequelize.STRING,
       },
+      refreshToken: {
+        allowNull: true,
+        type: Sequelize.STRING,
+      }
     });
   },
 
   async down(queryInterface, Sequelize) {
-    async (queryInterface, Sequelize) => {
-      await queryInterface.dropTable('users');
-    };
+    await queryInterface.dropTable('users');
   },
 };

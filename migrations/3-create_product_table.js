@@ -22,8 +22,8 @@ module.exports = {
         allowNull: true
       },
       product_category: {
-        type: Sequelize.JSON,
-        allowNull: false
+        type: Sequelize.JSONB,
+        allowNull: true,
       },
       createdAt: {
         type: Sequelize.DATE,

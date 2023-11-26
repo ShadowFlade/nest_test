@@ -1,5 +1,5 @@
-import { Injectable } from '@nestjs/common';
-import { Category } from '../models/Category';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
+import { Category, ICategory } from '../models/Category';
 import { FindOptions } from 'sequelize';
 
 @Injectable()
@@ -37,5 +37,36 @@ export class SectionService {
         },
       ],
     });
+  }
+
+  async getWithChildren(id) {
+    const categoryDB = await Category.findOne({
+      where: { id },
+    });
+
+    if (!categoryDB) {
+      throw new HttpException('NOT FOUND', HttpStatus.NOT_FOUND);
+    }
+
+    const category = categoryDB.dataValues;
+    const childCategoriesIDs = JSON.parse(category.subcategories);
+    
+    if (!childCategoriesIDs || childCategoriesIDs.length == 0) {
+      return category;
+    }
+
+    const childCategories = await Category.findAll({
+      where: {
+        id: [childCategoriesIDs],
+      },
+    });
+
+    if(!childCategories){
+      return category;
+    }
+    
+    category.subcategories = childCategories;
+    return category;
+
   }
 }

@@ -19,15 +19,6 @@ const users = [
     updatedAt: new Date()
   },
   {
-    name: '',
-    login: 'admin',
-    role: 'admin',
-    email: 'test1@yandex.com',
-    password:"password",
-    createdAt: new Date(),
-    updatedAt: new Date()
-  },
-  {
     name: 'Ms. Smith',
     login: 'test3',
     email: 'ang@joli.com',
@@ -36,15 +27,6 @@ const users = [
     createdAt: new Date(),
     updatedAt: new Date()
   },
-  {
-    name: 'admin',
-    login: 'test4',
-    email: 'ang2@joli.com',
-    role: 'admin',
-    password: "password",
-    createdAt: new Date(),
-    updatedAt: new Date()
-  }
 ]
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {

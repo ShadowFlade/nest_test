@@ -1,4 +1,4 @@
-POST http://localhost:3000/login
+POST http://localhost:4000/login
 Content-Type: application/json
 
 {"login": "admin","password": "password"}
@@ -18,9 +18,9 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MzkzNTYzLCJsb
 
 ###
 
-POST http://localhost:3000/catalog/add  HTTP/1.1
+POST http://localhost:4000/catalog/add  HTTP/1.1
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MzkzNTYzLCJsb2dpbiI6ImFkbWluIiwicGFzc3dvcmQiOiIkMmIkMDQkODJCZTk4bDJqa2JvYURkUWFCT2g5ZWRhZWNhS1djSmVBZVNNWUhZL2JQUzhQVXA3WjlSeXkiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3MDA3NTUxNTAsImV4cCI6MTcwMDc1NTIxMH0.f48rfGXunsjOOAuh2QY_hhMWax7L8o4DUCqGcZv_d1I
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NywibG9naW4iOiJhZG1pbiIsInBhc3N3b3JkIjoiJDJiJDA0JDFNSUdZZE1DNHRYZnI4T0xucVpjYk95djhKWWtKYmhoSFIzMDBNWjd2dGltdWpjR3djRmtpIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzAxMDI2Nzc0LCJleHAiOjE3MDEwMjY4MzR9.qmJn5KrZKBKGUOz4JdfzAA1qAo46X8ziml2rcIOSByE
 
 {
 	"name":"test",
@@ -30,11 +30,11 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MzkzNTYzLCJsb
 
 ###
 
-POST http://localhost:3000/token
+POST http://localhost:4000/token
 Content-Type: application/json
 
 {
-	"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MzkzNTYzLCJsb2dpbiI6ImFkbWluIiwicGFzc3dvcmQiOiIkMmIkMDQkODJCZTk4bDJqa2JvYURkUWFCT2g5ZWRhZWNhS1djSmVBZVNNWUhZL2JQUzhQVXA3WjlSeXkiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3MDA3NDcwMDN9.gMJw-aXqnjXRZMfYXn3-OX6P2jLFjoIOabztkmgEsUg"
+	"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NywibG9naW4iOiJhZG1pbiIsInBhc3N3b3JkIjoiJDJiJDA0JDFNSUdZZE1DNHRYZnI4T0xucVpjYk95djhKWWtKYmhoSFIzMDBNWjd2dGltdWpjR3djRmtpIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzAxMDI2Nzk4fQ.rg8i2CrTcWvGvJXjwo7LifFGKJ0FCcRV7vXSH3_NlEA"
 }
 
 

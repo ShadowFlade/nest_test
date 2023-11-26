@@ -102,7 +102,6 @@ export class CatalogService {
       throw new HttpException('No product name',HttpStatus.BAD_REQUEST);
     }
     const createInfo = await Product.create({ name, description, price });
-    console.log(createInfo,' createInfo');
     return createInfo;
   }
 

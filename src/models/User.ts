@@ -1,6 +1,7 @@
 import { Sequelize, DataTypes } from 'sequelize';
 import { IDialect } from 'src/main';
 import {config as dotenvConfig} from 'dotenv';
+dotenvConfig();
 
 const sequelize = new Sequelize(
 	process.env.DB_NAME,

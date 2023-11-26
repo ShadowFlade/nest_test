@@ -20,6 +20,11 @@ export class SectionsController {
     return this.SectionService.getWithParent(params.id);
   }
 
+  @Get('children/:id')
+  getSectionWithChildren(@Param() params){
+    return this.SectionService.getWithChildren(params.id);
+  }
+
   @Get('')
   getSections(){
       return this.CatalogService.getAllSections();

@@ -20,13 +20,13 @@ export class AuthService {
       )).dataValues;
 
     if (!user) {
-      throw new HttpException('Forbidden', HttpStatus.FORBIDDEN);
+      throw new HttpException('Forbidden1', HttpStatus.FORBIDDEN);
     }
 
     const isLegitPassword = await bcrypt.compare(password, user.password);
 
     if (!isLegitPassword) {
-      throw new HttpException('Forbidden', HttpStatus.FORBIDDEN);
+      throw new HttpException('Forbidden2', HttpStatus.FORBIDDEN);
     }
 
     const accessToken = this.generateAccessToken(user);
