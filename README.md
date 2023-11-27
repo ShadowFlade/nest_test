@@ -2,6 +2,8 @@
 
 ## Installation
 
+Создайте .env файл по примеру .env.example и заполните его нужными данными.
+
 ```bash
 $ git clone
 $ npm install
