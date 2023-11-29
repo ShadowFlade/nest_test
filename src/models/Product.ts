@@ -2,14 +2,12 @@ import { Sequelize, DataTypes } from 'sequelize';
 import { IProduct } from 'src/controllers/catalog.controller';
 import {config as dotenvConfig} from 'dotenv';
 import { IDialect } from 'src/main';
+const sequelize = require('../../db/db');
+
 dotenvConfig();
 
-const sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_LOGIN, process.env.DB_PASSWORD, {
-  host: process.env.DB_HOST,
-  dialect: process.env.DB_DIALECT as IDialect,
-});
 
-export const Product = sequelize.define<any, IProduct>('product', {
+export const Product = sequelize.define('product', {
   id: { primaryKey: true, type: DataTypes.INTEGER, autoIncrement: true },
   name: DataTypes.STRING,
   price: DataTypes.NUMBER,
