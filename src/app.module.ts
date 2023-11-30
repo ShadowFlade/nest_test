@@ -1,16 +1,14 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './controllers/app.controller';
-import { AppService } from './services/app.service';
-import { CatalogController } from './controllers/catalog.controller';
-import { CatalogService } from './services/catalog.service';
-import { SectionService } from './services/section.service';
-import { SectionsController } from './controllers/sections.controller';
-import { UserController } from './controllers/user.controller';
-import { UserService } from './services/user.service';
-import { AuthController } from './controllers/Auth.controller';
-import { AuthService } from './services/auth.service';
-import { Sequelize } from 'sequelize';
-import { IDialect } from './main';
+import { AppController } from './controllers/app.controller.js';
+import { AppService } from './services/app.service.js';
+import { CatalogController } from './controllers/catalog.controller.js';
+import { CatalogService } from './services/catalog.service.js';
+import { SectionService } from './services/section.service.js';
+import { SectionsController } from './controllers/sections.controller.js';
+import { UserController } from './controllers/user.controller.js';
+import { UserService } from './services/user.service.js';
+import { AuthController } from './controllers/Auth.controller.js';
+import { AuthService } from './services/auth.service.js';
 
 @Module({
   imports: [],

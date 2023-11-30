@@ -1,9 +1,8 @@
-import { Sequelize, DataTypes } from 'sequelize';
-import { IProduct } from 'src/controllers/catalog.controller';
+import { DataTypes } from 'sequelize';
 import { config as dotenvConfig } from 'dotenv';
-import { sequelize } from '../../config/db';
-import { Category } from './Category';
-import { ProductsCategories} from './ProductsCategories'
+import { sequelize } from '../../config/db.js';
+import { Category } from './Category.js';
+import { ProductsCategories } from './ProductsCategories.js';
 dotenvConfig();
 
 export const Product = sequelize.define('product', {

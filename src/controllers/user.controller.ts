@@ -7,7 +7,7 @@ import {
   Res,
   Response,
 } from '@nestjs/common';
-import { UserService } from '../services/user.service';
+import { UserService } from '../services/user.service.js';
 
 @Controller('user')
 export class UserController {

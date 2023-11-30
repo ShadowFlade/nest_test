@@ -10,9 +10,9 @@ import {
 } from '@nestjs/common';
 import { Response } from 'express';
 import jwt from 'jsonwebtoken';
-import { AuthService } from '../services/auth.service';
-import { UserService } from '../services/user.service';
-import { IUser, User } from '../models/User';
+import { AuthService } from '../services/auth.service.js';
+import { UserService } from '../services/user.service.js';
+import { IUser, User } from '../models/User.js';
 
 @Controller('')
 export class AuthController {

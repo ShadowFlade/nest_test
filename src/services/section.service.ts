@@ -1,5 +1,5 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
-import { Category, ICategory } from '../models/Category';
+import { Category, ICategory } from '../models/Category.js';
 import { FindOptions } from 'sequelize';
 
 @Injectable()

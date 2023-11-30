@@ -1,8 +1,6 @@
-import { Sequelize, DataTypes } from 'sequelize';
-import { IProduct } from 'src/controllers/catalog.controller';
+import { DataTypes } from 'sequelize';
 import {config as dotenvConfig} from 'dotenv';
-import { IDialect } from 'src/main';
-import {sequelize} from '../../config/db';
+import {sequelize} from '../../config/db.js';
 
 dotenvConfig();
 

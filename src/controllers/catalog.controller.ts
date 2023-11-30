@@ -1,6 +1,6 @@
 import { Body, Controller, Get, Param, Post, UseGuards } from '@nestjs/common';
-import { CatalogService } from '../services/catalog.service';
-import { AuthGuard } from '../guards/auth.guard';
+import { CatalogService } from '../services/catalog.service.js';
+import { AuthGuard } from '../guards/auth.guard.js';
 
 export type IProduct = {
   id: number;
@@ -55,7 +55,7 @@ export class CatalogController {
   }
 
   @Get('')
-  async getProducts(): Promise<IProduct[]> {
+  async getProducts() {
     const data = await this.CatalogService.getProducts();
     return data; 
   }

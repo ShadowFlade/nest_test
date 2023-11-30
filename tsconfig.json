@@ -1,9 +1,10 @@
 {
   "compilerOptions": {
-    "module": "commonjs",
+    "module": "nodenext",
     "declaration": true,
     "allowJs":true,
     "esModuleInterop": true,
+    "importHelpers":true,
     "removeComments": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
