@@ -2,7 +2,7 @@ import { Sequelize, DataTypes } from 'sequelize';
 import { IProduct } from 'src/controllers/catalog.controller';
 import {config as dotenvConfig} from 'dotenv';
 import { IDialect } from 'src/main';
-const sequelize = require('../../db/db');
+import {sequelize} from '../../config/db';
 
 dotenvConfig();
 

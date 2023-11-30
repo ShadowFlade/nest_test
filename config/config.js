@@ -1,4 +1,5 @@
-require('dotenv').config();
+const dotenv = require('dotenv');
+dotenv.config();
 
 module.exports =  {
     dialect: 'postgres',
@@ -12,4 +13,4 @@ module.exports =  {
     seederStorageTableName: 'YWSeeds',
     migrationStorageTableName: 'YWMigrations',
     sync: false,
-}
+ };

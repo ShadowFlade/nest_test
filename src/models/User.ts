@@ -1,7 +1,7 @@
 import { Sequelize, DataTypes } from 'sequelize';
 import { IDialect } from 'src/main';
 import {config as dotenvConfig} from 'dotenv';
-const sequelize = require('../../db/db');
+import {sequelize} from '../../config/db';
 dotenvConfig();
 
 const role = {
