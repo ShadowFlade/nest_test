@@ -1,16 +1,29 @@
 import { DataTypes } from 'sequelize';
 import { config as dotenvConfig } from 'dotenv';
 import { sequelize } from '../../../config/db.js';
-import { Category } from '../../category/models/category.model.js';
-import { ProductsCategories } from '../../common/junction_tables/ProductsCategories.model.js';
+import { Category, ICategory } from '../../category/models/category.model.js';
+import { ProductsCategories } from '../../common/junction_tables/ProductsCategories.model.js'
+import { Column, Model, Table, BelongsToMany } from 'sequelize-typescript';
 dotenvConfig();
 
-export const Product = sequelize.define('product', {
-  id: { primaryKey: true, type: DataTypes.INTEGER, autoIncrement: true },
-  name: DataTypes.STRING,
-  price: DataTypes.NUMBER,
-  description: DataTypes.STRING,
-  createdAt: DataTypes.DATE,
-  updatedAt: DataTypes.DATE,
-});
-Product.belongsToMany(Category, { through: ProductsCategories });
+
+@Table({modelName:'products'})
+export class Product extends Model {
+  @Column({primaryKey:true, autoIncrement: true})
+  name: string;
+
+  @Column
+  price: number;
+
+  @Column
+  description: string;
+
+  @Column({type: DataTypes.DATE})
+  createdAt;
+
+  @Column({type: DataTypes.DATE})
+  updatedAt
+
+  @BelongsToMany(() => Category, () => ProductsCategories)
+  categories!: ICategory[];
+}

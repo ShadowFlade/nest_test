@@ -1,6 +1,10 @@
 import { Body, Controller, Get, Param, Post, UseGuards } from '@nestjs/common';
 import { CatalogService } from './catalog.service.js';
 import { AuthGuard } from '../common/guards/auth.guard.js';
+import { CreateCatalogDto } from './dto/create-catalog.dto.js';
+import { InjectModel } from '@nestjs/sequelize';
+import { Product } from './models/product.model.js';
+
 
 export type IProduct = {
   id: number;
@@ -14,7 +18,9 @@ export type IProduct = {
 
 @Controller('catalog')
 export class CatalogController {
-  constructor(private readonly CatalogService: CatalogService) {}
+  constructor(
+    @InjectModel(Product)
+    private readonly CatalogService: CatalogService) {}
   
   
   @Post('/delete/:id')
@@ -23,10 +29,10 @@ export class CatalogController {
     return await this.CatalogService.deleteProduct(id);
   }
 
-  @Post('/update/:id')
+  @Post('/update/')
   @UseGuards(AuthGuard)
-  async updateProduct(@Param('id') id: number, @Body() data) {
-    return await this.CatalogService.updateProduct(data);
+  async updateProduct(@Body() CreateCatalogDto : CreateCatalogDto) {
+    return await this.CatalogService.updateProduct(CreateCatalogDto);
   }
 
   @Get('/allSections')

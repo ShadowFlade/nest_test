@@ -2,11 +2,16 @@ import { Injectable } from '@nestjs/common';
 import { User } from './models/user.model.js';
 import bcrypt from 'bcrypt';
 import { log } from 'console';
+import { InjectModel } from '@nestjs/sequelize';
 
 @Injectable()
 export class UserService {
+  constructor(
+    @InjectModel(User)
+    private readonly userModel: typeof User,
+  ) {}
   delete(login) {
-    return User.destroy({
+    return this.userModel.destroy({
       where: { login },
     });
   }
@@ -19,7 +24,7 @@ export class UserService {
     try {
       const hashedPassword = await bcrypt.hash(password, 3);
 
-      return User.create({
+      return this.userModel.create({
         login,
         password: hashedPassword,
         name,
@@ -37,6 +42,6 @@ export class UserService {
     if (!login) {
       return;
     }
-    return User.findOne({ where: { login } });
+    return this.userModel.findOne({ where: { login } });
   }
 }

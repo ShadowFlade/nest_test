@@ -3,9 +3,16 @@ import { Product } from './models/product.model.js';
 import { Op} from 'sequelize';
 import { Category} from '../category/models/category.model.js';
 import { Helper } from '../common/utils/Helper.js';
+import { InjectModel } from '@nestjs/sequelize';
 
 @Injectable()
 export class CatalogService {
+  constructor(
+    @InjectModel(Product)
+    private readonly productModel: typeof Product,
+    @InjectModel(Category)
+    private readonly sectionModel: typeof Category,
+  ) {}
   async getProducts(filter?) {
     let categoryID;
     let where: any = {};
@@ -15,7 +22,7 @@ export class CatalogService {
       const categoryFilter = filter.where.product_category as
         | string
         | undefined;
-      const { dataValues: data } = await Category.findOne({
+      const { dataValues: data } = await this.productModel.findOne({
         where: {
           slug: categoryFilter,
         },
@@ -32,7 +39,7 @@ export class CatalogService {
       };
     }
 
-    const productsData = await Product.findAll({
+    const productsData = await this.productModel.findAll({
       where,
       limit: 100,
     });
@@ -44,25 +51,19 @@ export class CatalogService {
   }
 
   async getAllSections() {
-    let sections = await Category.findAll({
+    let sections = await this.productModel.findAll({
       limit: 10,
-      // include: {
-      //   model: Category,
-      //   as: 'Subcategories',
-      // },
       order: [['slug', 'asc']],
     });
 
-    // sections = sections.map(item => item.dataValues);
     let sectionsMain = [];
     for (let i = 0; i < sections.length; i++) {
       const id = sections[i].dataValues['id'];
-      // sectionsMain[sections[i].dataValues['id']] = [];
       sectionsMain[id] = sections[i].dataValues;
     }
 
     const subcategories = [];
-    sectionsMain.forEach((item, index) => {
+    sectionsMain.forEach((_, index) => {
       if (!sectionsMain[index].subcategories) {
         return;
       }
@@ -75,12 +76,12 @@ export class CatalogService {
         subcategories[id].push(...sectionsMain[index].subcategories);
       }
     });
-    let subSections = await Category.findAll({
+    let subSections = await this.sectionModel.findAll({
       order: [['slug', 'asc']],
     });
     const subSectionsMain = [];
     subSections.forEach(
-      (item, index) => (subSectionsMain[item.dataValues.id] = item),
+      (item) => (subSectionsMain[item.dataValues.id] = item),
     );
     sectionsMain = Helper.formatCategories(sectionsMain, subSectionsMain);
 
@@ -90,7 +91,7 @@ export class CatalogService {
     if (!id) {
       return;
     }
-    return Product.destroy({
+    return this.productModel.destroy({
       where: { id },
     });
   }
@@ -99,7 +100,7 @@ export class CatalogService {
     if (!name) {
       throw new HttpException('No product name',HttpStatus.BAD_REQUEST);
     }
-    const createInfo = await Product.create({ name, description, price });
+    const createInfo = await this.productModel.create({ name, description, price });
     return createInfo;
   }
 
@@ -108,7 +109,7 @@ export class CatalogService {
       return;
     }
 
-    return Product.update(
+    return this.productModel.update(
       { name, description, price },
       {
         where: {

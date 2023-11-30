@@ -1,6 +1,7 @@
 import { DataTypes } from 'sequelize';
 import {config as dotenvConfig} from 'dotenv';
 import {sequelize} from '../../../config/db.js';
+import { Column, Model, Table } from 'sequelize-typescript';
 dotenvConfig();
 
 const role = {
@@ -18,10 +19,21 @@ export type IUser = {
   refreshToken?: string;
 };
 
-export const User = sequelize.define('user', {
-  login: DataTypes.STRING,
-  name: DataTypes.STRING,
-  password: DataTypes.STRING,
-  role: DataTypes.STRING,
-  refreshToken: DataTypes.STRING,
-});
+
+@Table({modelName:'users'})
+export class User extends Model {
+  @Column({primaryKey:true, autoIncrement: true})
+  id: number;
+
+  @Column
+  name: string;
+
+  @Column
+  password: string;
+
+  @Column
+  role: string;
+
+  @Column
+  refreshToken: string;
+}

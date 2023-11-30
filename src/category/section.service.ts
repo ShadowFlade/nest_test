@@ -1,17 +1,23 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { Category } from './models/category.model.js';
+import { InjectModel } from '@nestjs/sequelize';
 
 @Injectable()
 export class SectionService {
+  constructor(
+    @InjectModel(Category)
+    private readonly sectionModel: typeof Category,
+  ) {}
+  
   getSections(limit = 10) {
-    return Category.findAll({ limit });
+    return this.sectionModel.findAll({ limit });
   }
 
   delete(id) {
     if (!id) {
       return;
     }
-    return Category.destroy({
+    return this.sectionModel.destroy({
       where: { id },
     });
   }
@@ -20,15 +26,15 @@ export class SectionService {
     if (!name || !slug) {
       return;
     }
-    return Category.create({ name, description, price, slug });
+    return this.sectionModel.create({ name, description, price, slug });
   }
 
   get(id) {
-    return Category.findOne({ where: { id } });
+    return this.sectionModel.findOne({ where: { id } });
   }
 
   getWithParent(id) {
-    return Category.findOne({
+    return this.sectionModel.findOne({
       where: { id },
       include: [
         {
@@ -39,7 +45,7 @@ export class SectionService {
   }
 
   async getWithChildren(id) {
-    const categoryDB = await Category.findOne({
+    const categoryDB = await this.sectionModel.findOne({
       where: { id },
     });
 
@@ -54,7 +60,7 @@ export class SectionService {
       return category;
     }
 
-    const childCategories = await Category.findAll({
+    const childCategories = await this.sectionModel.findAll({
       where: {
         id: [childCategoriesIDs],
       },
