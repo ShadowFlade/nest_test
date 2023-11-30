@@ -21,19 +21,7 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      subcategories: {
-        type: Sequelize.JSONB,
-        allowNull: true,
-      },
-      parentCategory: {
-        type: Sequelize.INTEGER,
-        allowNull: true,
-        references: {
-          model: 'categories',
-          key: 'id',
-        },
-      },
-      createdAt: {
+    createdAt: {
         allowNull: false,
         type: Sequelize.DATE,
       },

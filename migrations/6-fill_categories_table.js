@@ -6,8 +6,6 @@ const categories = [
     slug: 'skirtsTrik',
     createdAt: new Date().toUTCString(),
     updatedAt: new Date().toUTCString(),
-    subcategories: '["48"]',
-    parentCategory: 51,
   },
   {
     id: 51,
@@ -15,7 +13,6 @@ const categories = [
     slug: 'sweaters',
     createdAt: new Date().toUTCString(),
     updatedAt: new Date().toUTCString(),
-    subcategories: '["77", "51"]',
   },
   {
     id: 34,
@@ -23,7 +20,6 @@ const categories = [
     slug: 'aksessuary',
     createdAt: new Date().toUTCString(),
     updatedAt: new Date().toUTCString(),
-    subcategories: '["67", "45"]',
   },
   {
     id: 72,
@@ -31,7 +27,6 @@ const categories = [
     slug: 'bags',
     createdAt: new Date().toUTCString(),
     updatedAt: new Date().toUTCString(),
-    subcategories: '["65", "109"]',
   },
   {
     id: 73,
@@ -39,7 +34,6 @@ const categories = [
     slug: 'belt',
     createdAt: new Date().toUTCString(),
     updatedAt: new Date().toUTCString(),
-    subcategories: '["82", "131"]',
   },
   {
     id: 46,
@@ -47,7 +41,6 @@ const categories = [
     slug: 'bluzy',
     createdAt: new Date().toUTCString(),
     updatedAt: new Date().toUTCString(),
-    subcategories: '["50", "129"]',
   },
   {
     id: 67,
@@ -55,7 +48,6 @@ const categories = [
     slug: 'gift',
     createdAt: new Date().toUTCString(),
     updatedAt: new Date().toUTCString(),
-    subcategories: '["28"]',
   },
   {
     id: 112,
@@ -63,7 +55,6 @@ const categories = [
     slug: 'belye',
     createdAt: new Date().toUTCString(),
     updatedAt: new Date().toUTCString(),
-    subcategories: '["36", "113"]',
   },
   {
     id: 94,
@@ -71,7 +62,6 @@ const categories = [
     slug: 'skirtsTrik',
     createdAt: new Date().toUTCString(),
     updatedAt: new Date().toUTCString(),
-    subcategories: '["28", "110"]',
   },
   {
     id: 48,
@@ -79,7 +69,6 @@ const categories = [
     slug: 'korsety',
     createdAt: new Date().toUTCString(),
     updatedAt: new Date().toUTCString(),
-    parentCategory: 90,
   },
 ];
 /** @type {import('sequelize-cli').Migration} */

@@ -12,7 +12,6 @@ export type ICategory = {
   name: string,
   description: string,
   slug: string,
-  subcategories: string[]
 }
 
 export const Category = sequelize.define('category', {
@@ -20,10 +19,4 @@ export const Category = sequelize.define('category', {
   name: DataTypes.STRING,
   description: DataTypes.STRING,
   slug: DataTypes.STRING,
-  subcategories: DataTypes.JSONB,
-  parentCategory: DataTypes.INTEGER
-});
-
-Category.hasMany(Category, {
-  foreignKey: 'parentCategory',
 });

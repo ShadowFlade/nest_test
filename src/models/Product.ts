@@ -2,7 +2,8 @@ import { Sequelize, DataTypes } from 'sequelize';
 import { IProduct } from 'src/controllers/catalog.controller';
 import { config as dotenvConfig } from 'dotenv';
 import { sequelize } from '../../config/db';
-
+import { Category } from './Category';
+import { ProductsCategories} from './ProductsCategories'
 dotenvConfig();
 
 export const Product = sequelize.define('product', {
@@ -10,7 +11,7 @@ export const Product = sequelize.define('product', {
   name: DataTypes.STRING,
   price: DataTypes.NUMBER,
   description: DataTypes.STRING,
-  product_category: DataTypes.JSON,
   createdAt: DataTypes.DATE,
   updatedAt: DataTypes.DATE,
 });
+Product.belongsToMany(Category, { through: ProductsCategories });
