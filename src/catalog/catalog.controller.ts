@@ -1,6 +1,6 @@
 import { Body, Controller, Get, Param, Post, UseGuards } from '@nestjs/common';
-import { CatalogService } from '../services/catalog.service.js';
-import { AuthGuard } from '../guards/auth.guard.js';
+import { CatalogService } from './catalog.service.js';
+import { AuthGuard } from '../common/guards/auth.guard.js';
 
 export type IProduct = {
   id: number;

@@ -1,7 +1,6 @@
 import { Controller, Get, Param } from '@nestjs/common';
-import { SectionService } from '../services/section.service.js';
-import { CatalogService } from '../services/catalog.service.js';
-import { ParamsTokenFactory } from '@nestjs/core/pipes';
+import { SectionService } from './section.service.js';
+import { CatalogService } from '../catalog/catalog.service.js';
 
 export type IProduct = {
   id: number,

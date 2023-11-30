@@ -1,6 +1,6 @@
 import { DataTypes } from 'sequelize';
 import {config as dotenvConfig} from 'dotenv';
-import {sequelize} from '../../config/db.js';
+import {sequelize} from '../../../config/db.js';
 
 dotenvConfig();
 

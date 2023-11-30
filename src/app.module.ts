@@ -1,14 +1,14 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './controllers/app.controller.js';
-import { AppService } from './services/app.service.js';
-import { CatalogController } from './controllers/catalog.controller.js';
-import { CatalogService } from './services/catalog.service.js';
-import { SectionService } from './services/section.service.js';
-import { SectionsController } from './controllers/sections.controller.js';
-import { UserController } from './controllers/user.controller.js';
-import { UserService } from './services/user.service.js';
-import { AuthController } from './controllers/Auth.controller.js';
-import { AuthService } from './services/auth.service.js';
+import { AppController } from './app/app.controller.js';
+import { AppService } from './app/app.service.js';
+import { CatalogController } from './catalog/catalog.controller.js';
+import { CatalogService } from './catalog/catalog.service.js';
+import { SectionService } from './category/section.service.js';
+import { SectionsController } from './category/sections.controller.js';
+import { UserController } from './user/user.controller.js';
+import { UserService } from './user/user.service.js';
+import { AuthController } from './auth/Auth.controller.js';
+import { AuthService } from './auth/auth.service.js';
 
 @Module({
   imports: [],

@@ -1,7 +1,6 @@
 import {
   Body,
   Controller,
-  Get,
   HttpException,
   HttpStatus,
   Post,
@@ -9,10 +8,9 @@ import {
   Res,
 } from '@nestjs/common';
 import { Response } from 'express';
-import jwt from 'jsonwebtoken';
-import { AuthService } from '../services/auth.service.js';
-import { UserService } from '../services/user.service.js';
-import { IUser, User } from '../models/User.js';
+import { AuthService } from './auth.service.js';
+import { UserService } from '../user/user.service.js';
+import { IUser, User } from '../user/models/user.model.js';
 
 @Controller('')
 export class AuthController {

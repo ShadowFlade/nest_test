@@ -1,7 +1,5 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
-import { FindOptions, Op, Sequelize } from 'sequelize';
-import sequelize from 'sequelize/types/sequelize';
-import { IUser, User } from '../models/User.js';
+import { IUser, User } from '../user/models/user.model.js';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import { Response } from 'express';

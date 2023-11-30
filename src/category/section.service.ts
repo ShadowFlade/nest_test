@@ -1,6 +1,5 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
-import { Category, ICategory } from '../models/Category.js';
-import { FindOptions } from 'sequelize';
+import { Category } from './models/category.model.js';
 
 @Injectable()
 export class SectionService {

@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { User } from '../models/User.js';
+import { User } from './models/user.model.js';
 import bcrypt from 'bcrypt';
 import { log } from 'console';
 

@@ -1,13 +1,11 @@
 import {
   Body,
   Controller,
-  Get,
-  HttpStatus,
   Post,
   Res,
   Response,
 } from '@nestjs/common';
-import { UserService } from '../services/user.service.js';
+import { UserService } from './user.service.js';
 
 @Controller('user')
 export class UserController {

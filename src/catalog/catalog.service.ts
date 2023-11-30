@@ -1,8 +1,8 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
-import { Product } from '../models/Product.js';
+import { Product } from './models/product.model.js';
 import { Op} from 'sequelize';
-import { Category} from '../models/Category.js';
-import { Helper } from '../utils/Helper.js';
+import { Category} from '../category/models/category.model.js';
+import { Helper } from '../common/utils/Helper.js';
 
 @Injectable()
 export class CatalogService {
