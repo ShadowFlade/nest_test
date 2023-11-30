@@ -6,7 +6,7 @@ import { CatalogController } from './catalog.controller.js';
 import { Category } from '../category/models/category.model.js';
 
 @Module({
-  imports: [SequelizeModule.forFeature([Product,Category])],
+  imports: [SequelizeModule.forFeature([Category, Product])],
   providers: [CatalogService],
   controllers: [CatalogController],
 })

@@ -6,9 +6,24 @@ import { AuthService } from './auth/auth.service.js';
 import { CatalogModule } from './catalog/catalog.module.js';
 import { UserModule } from './user/user.module.js';
 import { CategoryModule } from './category/category.module.js';
-import { Sequelize } from 'sequelize-typescript';
+import { SequelizeModule } from '@nestjs/sequelize';
+import { User } from './user/models/user.model.js';
+import { Product } from './catalog/models/product.model.js';
+import { Category } from './category/models/category.model.js';
+import { IDialect } from './main.js';
 @Module({
-  imports: [CatalogModule, CategoryModule, UserModule],
+  
+  imports: [
+    SequelizeModule.forRoot({
+      dialect: process.env.DB_DIALECT as IDialect,
+      host: process.env.DB_HOST,
+      port: process.env.DB_PORT as unknown as number,
+      username: process.env.DB_LOGIN,
+      password: process.env.DB_PASSWORD,
+      database: process.env.DB_NAME,
+      models: [User, Product, Category],
+    }),
+    CatalogModule, CategoryModule, UserModule],
   controllers: [AppController, AuthController],
   providers: [AppService, AuthService],
 })
