@@ -1,8 +1,10 @@
-import { Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { User } from './models/user.model.js';
 import bcrypt from 'bcrypt';
 import { log } from 'console';
 import { InjectModel } from '@nestjs/sequelize';
+import { createUserDto } from './dto/create-user.dto.js';
+import { userDto } from './dto/user.dto.js';
 
 @Injectable()
 export class UserService {
@@ -16,7 +18,7 @@ export class UserService {
     });
   }
 
-  async add({ login, password, name, role = 'user' }) {
+  async add({ login, password, name, role = 'user' }) : Promise<createUserDto | false>{
     //but somehow if role is not specified it sets 'user' role anyway
     if (!login || !password) {
       return;
@@ -33,8 +35,7 @@ export class UserService {
         updatedAt: new Date().toUTCString(),
       });
     } catch {
-
-      return false;
+      throw new HttpException('COULD NOT CREATE THE ELEMENT',HttpStatus.UNPROCESSABLE_ENTITY)
     }
   }
 
