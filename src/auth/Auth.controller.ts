@@ -10,7 +10,14 @@ import {
 import { Response } from 'express';
 import { AuthService } from './auth.service.js';
 import { UserService } from '../user/user.service.js';
-import { IUser, User } from '../user/models/user.model.js';
+import { User } from '../user/models/user.model.js';
+import { ApiBody, ApiResponse } from '@nestjs/swagger';
+import { userDto } from '../user/dto/user.dto.js';
+import { AuthDto } from './dto/auth.dto.js';
+import { createUserDto } from '../../src/user/dto/create-user.dto.js';
+import { RefreshTokenDto } from './dto/refresh-token.dto.js';
+
+export type Login = Pick<User, 'login' | 'password'>;
 
 @Controller('')
 export class AuthController {
@@ -20,7 +27,9 @@ export class AuthController {
   ) {}
 
   @Post('login')
-  async login(@Body() data, @Res() res: Response) {
+  @ApiResponse({ status: 403 })
+  @ApiResponse({ status: 200, description: 'Successful login', type: userDto })
+  async login(@Body() data: AuthDto, @Res() res: Response) {
     const authData = await this.AuthService.auth({
       login: data.login,
       password: data.password,
@@ -33,12 +42,14 @@ export class AuthController {
   }
 
   @Post('/register')
-  register(@Body() data) {
-    return this.UserService.add(data);
+  @ApiResponse({ type: userDto, status: 201 })
+  @ApiResponse({ status: 422, description: 'COULD NOT CREATE THE ELEMENT' })
+  register(@Body() UserDto : createUserDto): Promise<createUserDto | false> {
+    return this.UserService.add(UserDto);
   }
 
   @Post('token')
-  async regenAccessToken(@Body() body, @Req() req, @Res() res: Response) {
+  async regenAccessToken(@Body() body : RefreshTokenDto, @Res() res: Response) {
     return this.AuthService.regenAccessToken(body, res);
   }
 }
