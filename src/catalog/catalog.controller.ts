@@ -29,7 +29,6 @@ export type IProduct = {
 @Controller('catalog')
 export class CatalogController {
   constructor(
-    @InjectModel(Product)
     private readonly CatalogService: CatalogService,
   ) {}
 
@@ -79,7 +78,7 @@ export class CatalogController {
   @Get('/:sectionCode')
   @ApiCreatedResponse({
     description: 'The products were successfully fetched',
-    type: CreateCatalogDto,
+    type: [CreateCatalogDto],
   })
   getSectionProducts(@Param('sectionCode') sectionCode: string) : Promise<Product[]> {
     if (!sectionCode) {
@@ -103,9 +102,9 @@ export class CatalogController {
   @Get('')
   @ApiCreatedResponse({
     description: 'The products were successfully fetched',
-    type: Product,
+    type: [CreateCatalogDto],
   }) 
-  async getProducts() : Promise<Product[]> {
+  async getProducts() : Promise<CreateCatalogDto[]> {
     const data = await this.CatalogService.getProducts();
     return data;
   }
