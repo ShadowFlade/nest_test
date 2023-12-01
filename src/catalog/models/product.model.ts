@@ -10,6 +10,8 @@ dotenvConfig();
 @Table({modelName:'products'})
 export class Product extends Model {
   @Column({primaryKey:true, autoIncrement: true})
+  id: number;
+  @Column
   name: string;
 
   @Column

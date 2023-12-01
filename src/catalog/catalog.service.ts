@@ -104,7 +104,7 @@ export class CatalogService {
     return createInfo;
   }
 
-  updateProduct({ id, name, description, price }) {
+  updateProduct({ id, name, description = '', price }) {
     if (!name) {
       return;
     }

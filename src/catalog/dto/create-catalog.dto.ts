@@ -1,8 +1,21 @@
+import { ApiProperty } from '@nestjs/swagger';
+
 export class CreateCatalogDto {
-  id: number
-  name: string
-  price: number
-  description: string
-  createdAt: string
-  updatedAt: string
+  @ApiProperty()
+  id: number;
+
+  @ApiProperty()
+  name: string;
+
+  @ApiProperty()
+  price: number;
+
+  @ApiProperty()
+  description?: string;
+
+  @ApiProperty()
+  createdAt: string;
+
+  @ApiProperty()
+  updatedAt: string;
 }
