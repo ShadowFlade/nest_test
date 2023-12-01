@@ -4,6 +4,8 @@ import { Op} from 'sequelize';
 import { Category} from '../category/models/category.model.js';
 import { Helper } from '../common/utils/Helper.js';
 import { InjectModel } from '@nestjs/sequelize';
+import { CreateCatalogDto } from './dto/create-catalog.dto.js';
+import { updateCatalogDto } from './dto/update-catalog.dto.js';
 
 @Injectable()
 export class CatalogService {
@@ -104,7 +106,7 @@ export class CatalogService {
     return createInfo;
   }
 
-  updateProduct({ id, name, description = '', price }) {
+  updateProduct({ id = 0, name = '', description = '', price = 0, createdAt = '', updatedAt = '' }: updateCatalogDto) {
     if (!name) {
       return;
     }

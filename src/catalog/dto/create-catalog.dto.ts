@@ -10,7 +10,7 @@ export class CreateCatalogDto {
   @ApiProperty()
   price: number;
 
-  @ApiProperty()
+  @ApiProperty({ required: false })
   description?: string;
 
   @ApiProperty()
