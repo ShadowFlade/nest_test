@@ -7,6 +7,25 @@ import { Column, Model, Table, BelongsToMany } from 'sequelize-typescript';
 dotenvConfig();
 
 
+export type IProduct = {
+  id:number;
+  name: string;
+
+  price: number;
+
+  description: string;
+
+  createdAt:string | Date;
+
+  updatedAt:string | Date;
+}
+
+export type IProductCategoriesJuncTable = {
+  id:number;
+  productCategory: number;
+  productID: number;
+}
+
 @Table({modelName:'products'})
 export class Product extends Model {
   @Column({primaryKey:true, autoIncrement: true})

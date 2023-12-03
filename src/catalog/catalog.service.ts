@@ -1,10 +1,9 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { Product } from './models/product.model.js';
-import { Op} from 'sequelize';
-import { Category} from '../category/models/category.model.js';
+import { Op } from 'sequelize';
+import { Category } from '../category/models/category.model.js';
 import { Helper } from '../common/utils/Helper.js';
 import { InjectModel } from '@nestjs/sequelize';
-import { CreateCatalogDto } from './dto/create-catalog.dto.js';
 import { updateCatalogDto } from './dto/update-catalog.dto.js';
 
 @Injectable()
@@ -82,9 +81,7 @@ export class CatalogService {
       order: [['slug', 'asc']],
     });
     const subSectionsMain = [];
-    subSections.forEach(
-      (item) => (subSectionsMain[item.dataValues.id] = item),
-    );
+    subSections.forEach((item) => (subSectionsMain[item.dataValues.id] = item));
     sectionsMain = Helper.formatCategories(sectionsMain, subSectionsMain);
 
     return sectionsMain.filter((item) => !!item);
@@ -100,13 +97,24 @@ export class CatalogService {
 
   async addProduct({ name, description, price }) {
     if (!name) {
-      throw new HttpException('No product name',HttpStatus.BAD_REQUEST);
+      throw new HttpException('No product name', HttpStatus.BAD_REQUEST);
     }
-    const createInfo = await this.productModel.create({ name, description, price });
+    const createInfo = await this.productModel.create({
+      name,
+      description,
+      price,
+    });
     return createInfo;
   }
 
-  updateProduct({ id = 0, name = '', description = '', price = 0, createdAt = '', updatedAt = '' }: updateCatalogDto) {
+  updateProduct({
+    id = 0,
+    name = '',
+    description = '',
+    price = 0,
+    createdAt = '',
+    updatedAt = '',
+  }: updateCatalogDto) {
     if (!name) {
       return;
     }

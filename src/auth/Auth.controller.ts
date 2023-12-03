@@ -50,6 +50,7 @@ export class AuthController {
 
   @Post('token')
   async regenAccessToken(@Body() body : RefreshTokenDto, @Res() res: Response) {
+    console.log(body,' body');
     return this.AuthService.regenAccessToken(body, res);
   }
 }
