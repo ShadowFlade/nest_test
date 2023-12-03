@@ -84,9 +84,7 @@ export class CatalogController {
     if (!sectionCode) {
       return;
     }
-    return this.CatalogService.getProducts({
-      where: { product_category: sectionCode },
-    });
+    return this.CatalogService.getProducts({ productCategory: sectionCode });
   }
 
   @Post('/add')

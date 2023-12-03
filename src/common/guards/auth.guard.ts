@@ -37,7 +37,7 @@ export class AuthGuard implements CanActivate {
     jwt.verify(
       token,
       process.env.ACCESS_SECRET_TOKEN,
-      (err: any, user: IUser) => {
+      (err: Error, user: IUser) => {
         if (err) throw new HttpException('FORBIDDEN', HttpStatus.FORBIDDEN);
         request.user = user;
       },

@@ -5,6 +5,7 @@ import { Category } from '../category/models/category.model.js';
 import { Helper } from '../common/utils/Helper.js';
 import { InjectModel } from '@nestjs/sequelize';
 import { updateCatalogDto } from './dto/update-catalog.dto.js';
+import { ProductsCategories } from 'src/common/junction_tables/ProductsCategories.model.js';
 
 @Injectable()
 export class CatalogService {
@@ -14,41 +15,26 @@ export class CatalogService {
     @InjectModel(Category)
     private readonly sectionModel: typeof Category,
   ) {}
-  async getProducts(filter?) {
-    let categoryID;
-    let where: any = {};
-
-    if (filter && filter.where) {
-      where = filter.where;
-      const categoryFilter = filter.where.product_category as
-        | string
-        | undefined;
-      const { dataValues: data } = await this.productModel.findOne({
-        where: {
-          slug: categoryFilter,
-        },
-      });
-      if (!data.id) {
-        return;
-      }
-      categoryID = data.id;
+  async getProducts(filter?: { [key: string]: string }) {
+    let productIDs = [];
+    
+    if (filter.productCategories) {
+      productIDs.push(...(await this.getProductsBySection(filter)));
     }
-
-    if (categoryID) {
-      where.product_category = {
-        [Op.contains]: [categoryID],
-      };
-    }
-
-    const productsData = await this.productModel.findAll({
-      where,
-      limit: 100,
+    
+    return Product.findAll({
+      where: {
+        id: productIDs,
+      },
     });
-    const data = [];
-    for (const product of productsData) {
-      data.push(product.dataValues);
-    }
-    return productsData;
+  }
+
+  async getProductsBySection(sections) {
+    return await ProductsCategories.findAll({
+      where: {
+        categoryId: sections,
+      },
+    });
   }
 
   async getAllSections() {
