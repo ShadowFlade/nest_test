@@ -38,6 +38,8 @@ export class CatalogController {
     description: 'The record has been successfully deleted.',
   })
   @ApiResponse({ status: 404, description: 'Product was not found.' })
+  @ApiResponse({ status: 401, description: 'Unauthorized' })
+
   @UseGuards(AuthGuard)
   async deleteProduct(@Param('id') id: number, res: Response) {
     const deleteResult = await this.CatalogService.deleteProduct(id);
@@ -75,6 +77,16 @@ export class CatalogController {
     return data;
   }
 
+  @Post('/add')
+  @ApiCreatedResponse({
+    description: 'The product was successfully created',
+    type: CreateCatalogDto,
+  })
+  @UseGuards(AuthGuard)
+  async addProduct(@Body() { name, description, price }: CreateCatalogDto) {
+    return await this.CatalogService.addProduct({ name, description, price });
+  }
+
   @Get('/:sectionCode')
   @ApiCreatedResponse({
     description: 'The products were successfully fetched',
@@ -87,15 +99,6 @@ export class CatalogController {
     return this.CatalogService.getProducts({ productCategory: sectionCode });
   }
 
-  @Post('/add')
-  @ApiCreatedResponse({
-    description: 'The product was successfully created',
-    type: CreateCatalogDto,
-  })
-  @UseGuards(AuthGuard)
-  async addProduct(@Body() { name, description, price }: CreateCatalogDto) {
-    return await this.CatalogService.addProduct({ name, description, price });
-  }
 
   @Get('')
   @ApiCreatedResponse({

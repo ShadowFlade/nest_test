@@ -1,10 +1,8 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { User } from './models/user.model.js';
 import bcrypt from 'bcrypt';
-import { log } from 'console';
 import { InjectModel } from '@nestjs/sequelize';
 import { createUserDto } from './dto/create-user.dto.js';
-import { userDto } from './dto/user.dto.js';
 
 @Injectable()
 export class UserService {
@@ -25,14 +23,15 @@ export class UserService {
     }
     try {
       const hashedPassword = await bcrypt.hash(password, 3);
-
+      const updatedAt = new Date().toUTCString();
+      const createdAt = updatedAt;
       return this.userModel.create({
         login,
         password: hashedPassword,
         name,
         role,
-        cratedAt: new Date().toUTCString(),
-        updatedAt: new Date().toUTCString(),
+        createdAt: createdAt,
+        updatedAt: updatedAt,
       });
     } catch {
       throw new HttpException('COULD NOT CREATE THE ELEMENT',HttpStatus.UNPROCESSABLE_ENTITY)

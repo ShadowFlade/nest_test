@@ -1,6 +1,5 @@
-import { DataTypes } from 'sequelize';
 import {config as dotenvConfig} from 'dotenv';
-import {sequelize} from '../../../config/db.js';
+import { DataTypes } from 'sequelize';
 import { Column, Model, Table } from 'sequelize-typescript';
 dotenvConfig();
 
@@ -39,4 +38,10 @@ export class User extends Model {
 
   @Column
   refreshToken: string;
+
+  @Column({type: DataTypes.DATE})
+  createdAt: string | Date;
+
+  @Column({type: DataTypes.DATE})
+  updatedAt: string | Date;
 }
