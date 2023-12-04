@@ -66,10 +66,10 @@ const productCategories = [
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    queryInterface.bulkInsert(productCategories);
+    return queryInterface.bulkInsert('products_categories', productCategories);
   },
 
   async down(queryInterface, Sequelize) {
-    queryInterface.bulkDelete(productCategories);
+    return queryInterface.bulkDelete('products_categories', productCategories);
   },
 };

@@ -15,6 +15,7 @@ $ npm run db:migrate
 
 ```bash
 # production mode
+$ npm run build
 $ npm run start:prod
 ```
 ## Описание проекта
