@@ -19,10 +19,10 @@ module.exports = {
         allowNull: true,
       },
     }
-    queryInterface.createTable('products_categories', productCategoriesSchema);
+    queryInterface.createTable('products_sections', productCategoriesSchema);
   },
 
   async down(queryInterface, Sequelize) {
-    queryInterface.dropTable('products_categories');
+    queryInterface.dropTable('products_sections');
   },
 };

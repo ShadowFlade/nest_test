@@ -1,19 +1,19 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { Product } from './models/product.model.js';
 import { Op } from 'sequelize';
-import { Category } from '../category/models/category.model.js';
+import { Section } from '../section/models/section.model.js';
 import { Helper } from '../common/utils/Helper.js';
 import { InjectModel } from '@nestjs/sequelize';
 import { updateCatalogDto } from './dto/update-catalog.dto.js';
-import { ProductsCategories } from '../common/junction_tables/ProductsCategories.model.js';
+import { ProductsSections } from '../common/junction_tables/ProductsSections.model.js';
 
 @Injectable()
 export class CatalogService {
   constructor(
     @InjectModel(Product)
     private readonly productModel: typeof Product,
-    @InjectModel(Category)
-    private readonly sectionModel: typeof Category,
+    @InjectModel(Section)
+    private readonly sectionModel: typeof Section,
   ) {}
   async getProducts(filter?: { [key: string]: string }) {
     let productIDs = [];
@@ -30,7 +30,7 @@ export class CatalogService {
   }
 
   async getProductsBySection(sections) {
-    return await ProductsCategories.findAll({
+    return await ProductsSections.findAll({
       where: {
         categoryId: sections,
       },
@@ -38,7 +38,7 @@ export class CatalogService {
   }
 
   async getAllSections() {
-    let sections = await this.productModel.findAll({
+    let sections = await this.sectionModel.findAll({
       limit: 10,
       order: [['slug', 'asc']],
     });

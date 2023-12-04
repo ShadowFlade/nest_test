@@ -5,13 +5,13 @@ import {
   Model,
   Table,
 } from 'sequelize-typescript';
-import { Category } from '../../category/models/category.model.js';
+import { Section } from '../../section/models/section.model.js';
 import { Product } from '../../catalog/models/product.model.js';
 
 dotenvConfig();
 
 @Table({ modelName: 'products_categories', timestamps: false })
-export class ProductsCategories extends Model<ProductsCategories> {
+export class ProductsSections extends Model<ProductsSections> {
   @Column({ primaryKey: true, autoIncrement: true })
   id: number;
 
@@ -19,7 +19,7 @@ export class ProductsCategories extends Model<ProductsCategories> {
   @Column
   productId!: number;
 
-  @ForeignKey(() => Category)
+  @ForeignKey(() => Section)
   @Column
   categoryId!: number;
 }

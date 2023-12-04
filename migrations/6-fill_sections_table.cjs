@@ -74,9 +74,9 @@ const categories = [
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.bulkInsert('categories', categories);
+    await queryInterface.bulkInsert('sections', categories);
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.bulkDelete('categories',categories);
+    await queryInterface.bulkDelete('sections',categories);
   },
 };

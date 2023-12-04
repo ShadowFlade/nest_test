@@ -1,8 +1,8 @@
 import { DataTypes } from 'sequelize';
 import { config as dotenvConfig } from 'dotenv';
 import { sequelize } from '../../../config/db.js';
-import { Category, ICategory } from '../../category/models/category.model.js';
-import { ProductsCategories } from '../../common/junction_tables/ProductsCategories.model.js'
+import { Section, ISection } from '../../section/models/section.model.js';
+import { ProductsSections } from '../../common/junction_tables/ProductsSections.model.js'
 import { Column, Model, Table, BelongsToMany } from 'sequelize-typescript';
 dotenvConfig();
 
@@ -45,6 +45,6 @@ export class Product extends Model {
   @Column({type: DataTypes.DATE})
   updatedAt
 
-  @BelongsToMany(() => Category, () => ProductsCategories)
-  categories!: ICategory[];
+  @BelongsToMany(() => Section, () => ProductsSections)
+  categories!: ISection[];
 }

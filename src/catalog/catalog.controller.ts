@@ -41,9 +41,7 @@ export class CatalogController {
   })
   @ApiResponse({ status: 404, description: 'Product was not found.' })
   @ApiResponse({ status: 401, description: 'Unauthorized' })
-  @ApiHeader({
-    name:'Authorization'
-  })
+
   @ApiBearerAuth('Authorization')
   @UseGuards(AuthGuard)
   async deleteProduct(@Param('id') id: number, res: Response) {
@@ -55,6 +53,7 @@ export class CatalogController {
   }
 
   @Post('/update/')
+  @ApiBearerAuth('Authorization')
   @ApiResponse({
     status: 204,
     description: 'The record has been successfully deleted.',
@@ -83,6 +82,7 @@ export class CatalogController {
   }
 
   @Post('/add')
+  @ApiBearerAuth('Authorization')
   @ApiCreatedResponse({
     description: 'The product was successfully created',
     type: CreateCatalogDto,

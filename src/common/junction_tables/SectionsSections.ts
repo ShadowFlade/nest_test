@@ -5,7 +5,7 @@ import {
   Model,
   Table,
 } from 'sequelize-typescript';
-import { Category } from '../../category/models/category.model.js';
+import { Section } from '../../section/models/section.model.js';
 import { Product } from '../../catalog/models/product.model.js';
 
 dotenvConfig();
@@ -19,7 +19,7 @@ export class CategoriesCategories extends Model<CategoriesCategories> {
   @Column
   parentCategory!: number;
 
-  @ForeignKey(() => Category)
+  @ForeignKey(() => Section)
   @Column
   childCategory!: number;
 }

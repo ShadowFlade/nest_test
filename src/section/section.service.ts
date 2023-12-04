@@ -1,13 +1,13 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
-import { Category } from './models/category.model.js';
+import { Section } from './models/section.model.js';
 import { InjectModel } from '@nestjs/sequelize';
-import { CategoriesCategories } from '../common/junction_tables/CategoriesCategories.js';
+import { CategoriesCategories } from '../common/junction_tables/SectionsSections.js';
 
 @Injectable()
 export class SectionService {
   constructor(
-    @InjectModel(Category)
-    private readonly sectionModel: typeof Category,
+    @InjectModel(Section)
+    private readonly sectionModel: typeof Section,
   ) {}
 
   getSections(limit = 10) {

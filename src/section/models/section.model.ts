@@ -3,18 +3,18 @@ import {config as dotenvConfig} from 'dotenv';
 import {sequelize} from '../../../config/db.js';
 import { BelongsToMany, Column, Model, Table } from 'sequelize-typescript';
 import { Product } from '../../catalog/models/product.model.js';
-import { ProductsCategories } from '../../common/junction_tables/ProductsCategories.model.js';
+import { ProductsSections } from '../../common/junction_tables/ProductsSections.model.js';
 
 dotenvConfig();
 
-export type ICategory = {
+export type ISection = {
   name: string,
   description: string,
   slug: string,
 }
 
-@Table({modelName:'categories'})
-export class Category extends Model {
+@Table({modelName:'sections'})
+export class Section extends Model {
   @Column({primaryKey:true, autoIncrement: true})
   id: number;
 
@@ -27,6 +27,6 @@ export class Category extends Model {
   @Column
   slug:string;
 
-  @BelongsToMany(() => Product, () => ProductsCategories)
-  categories!: ICategory[];
+  @BelongsToMany(() => Product, () => ProductsSections)
+  categories!: ISection[];
 }

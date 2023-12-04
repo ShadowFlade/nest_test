@@ -20,12 +20,12 @@ module.exports = {
       },
     };
     queryInterface.createTable(
-      'categories_categories',
+      'sections_sections',
       categoriesCategoriesSchema,
     );
   },
 
   async down(queryInterface, Sequelize) {
-    queryInterface.dropTable('categories_categories');
+    queryInterface.dropTable('sections_sections');
   },
 };

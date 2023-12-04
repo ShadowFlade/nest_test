@@ -26,7 +26,6 @@ export class AuthGuard implements CanActivate {
     name:"authorization"
   })
   validateRequest(request: IRequest,@Request() req = '') {
-    console.log(req,' req');
     const authHeader = request.headers['authorization'];
     const token = authHeader && authHeader.split(' ')[1];
     console.log(authHeader,' auth header ', token,' token')
