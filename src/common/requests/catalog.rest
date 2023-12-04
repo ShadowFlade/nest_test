@@ -8,8 +8,8 @@ Content-Type: application/json
 
 ###
 
-POST http://localhost:3000/catalog/delete/66  HTTP/1.1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MzkzNTYzLCJsb2dpbiI6ImFkbWluIiwicGFzc3dvcmQiOiIkMmIkMDQkODJCZTk4bDJqa2JvYURkUWFCT2g5ZWRhZWNhS1djSmVBZVNNWUhZL2JQUzhQVXA3WjlSeXkiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3MDA3NTIyNzUsImV4cCI6MTcwMDc1MjMzNX0.iaRN67Cm2OEa7qMrrRNGi0WnoaO2QqqAOfDMSVwcrVU
+POST http://localhost:3000/catalog/delete/1  HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwibG9naW4iOiJhZG1pbiIsInBhc3N3b3JkIjoiJDJiJDA0JE0xMnR2SHFlMko3UVo4aHZ6ZG95dGU5c2ZwdWd5bVNvMTZNemNqWVZhNVp5MmhHTWFFQi9tIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzAxNjgwNjkxLCJleHAiOjE3MDE2ODA3NTF9.Fx-ynAYGiUGtqk8dyPyN3pyDzzvKYWE7q-w5yO3H8Sg
 
 ###
 

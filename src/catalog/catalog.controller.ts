@@ -2,6 +2,7 @@ import {
   Body,
   Controller,
   Get,
+  Header,
   HttpException,
   HttpStatus,
   Param,
@@ -15,7 +16,8 @@ import { InjectModel } from '@nestjs/sequelize';
 import { Product } from './models/product.model.js';
 import { updateCatalogDto } from './dto/update-catalog.dto.js';
 import { Response } from 'express';
-import { ApiCreatedResponse, ApiResponse } from '@nestjs/swagger';
+import { ApiBasicAuth, ApiBearerAuth, ApiConsumes, ApiCreatedResponse, ApiHeader, ApiHeaders, ApiParam, ApiResponse } from '@nestjs/swagger';
+import { HeaderObject } from '@nestjs/swagger/dist/interfaces/open-api-spec.interface.js';
 
 export type IProduct = {
   id: number;
@@ -39,7 +41,10 @@ export class CatalogController {
   })
   @ApiResponse({ status: 404, description: 'Product was not found.' })
   @ApiResponse({ status: 401, description: 'Unauthorized' })
-
+  @ApiHeader({
+    name:'Authorization'
+  })
+  @ApiBearerAuth('Authorization')
   @UseGuards(AuthGuard)
   async deleteProduct(@Param('id') id: number, res: Response) {
     const deleteResult = await this.CatalogService.deleteProduct(id);

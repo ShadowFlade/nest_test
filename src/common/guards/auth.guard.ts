@@ -4,30 +4,35 @@ import {
   ExecutionContext,
   HttpException,
   HttpStatus,
+  Request,
 } from '@nestjs/common';
-import { Request } from 'express';
+import fs from 'fs';
+import { Request as IRequest } from 'express';
 import jwt from 'jsonwebtoken';
 import { Observable } from 'rxjs';
 import { IUser } from '../../user/models/user.model.js';
+import { ApiHeader } from '@nestjs/swagger';
 
 @Injectable()
 export class AuthGuard implements CanActivate {
   canActivate(
     context: ExecutionContext,
   ): boolean | Promise<boolean> | Observable<boolean> {
-    const request = context.switchToHttp().getRequest() as Request;
+    const request = context.switchToHttp().getRequest() as IRequest;
+    console.log(request.headers,' headers');
     return this.validateRequest(request);
   }
-
-  validateRequest(request: Request) {
+  @ApiHeader({
+    name:"authorization"
+  })
+  validateRequest(request: IRequest,@Request() req = '') {
+    console.log(req,' req');
     const authHeader = request.headers['authorization'];
     const token = authHeader && authHeader.split(' ')[1];
+    console.log(authHeader,' auth header ', token,' token')
     if (!token)
       throw new HttpException('Unauthorized', HttpStatus.UNAUTHORIZED);
     this.validateSecretToken(request, token);
-    this.validateRefreshToken(request);
-
-    
 
     return true;
 
@@ -44,7 +49,4 @@ export class AuthGuard implements CanActivate {
     );
   }
 
-  validateRefreshToken(request){
-
-  }
 }
