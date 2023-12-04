@@ -5,7 +5,7 @@ import { Category } from '../category/models/category.model.js';
 import { Helper } from '../common/utils/Helper.js';
 import { InjectModel } from '@nestjs/sequelize';
 import { updateCatalogDto } from './dto/update-catalog.dto.js';
-import { ProductsCategories } from 'src/common/junction_tables/ProductsCategories.model.js';
+import { ProductsCategories } from '../common/junction_tables/ProductsCategories.model.js';
 
 @Injectable()
 export class CatalogService {

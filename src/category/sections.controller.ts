@@ -16,13 +16,6 @@ export type IProduct = {
 export class SectionsController {
   constructor(private readonly SectionService: SectionService, private readonly CatalogService: CatalogService) {}
   
-  @Get('parent/:id')
-  @ApiCreatedResponse({
-    type: categoryDto
-  })
-  geSectionWithParent(@Param('id') id: number){
-    return this.SectionService.getWithParent(id);
-  }
 
   @Get('children/:id')
   @ApiCreatedResponse({

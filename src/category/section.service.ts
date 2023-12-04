@@ -1,6 +1,7 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { Category } from './models/category.model.js';
 import { InjectModel } from '@nestjs/sequelize';
+import { CategoriesCategories } from '../common/junction_tables/CategoriesCategories.js';
 
 @Injectable()
 export class SectionService {
@@ -8,7 +9,7 @@ export class SectionService {
     @InjectModel(Category)
     private readonly sectionModel: typeof Category,
   ) {}
-  
+
   getSections(limit = 10) {
     return this.sectionModel.findAll({ limit });
   }
@@ -33,17 +34,6 @@ export class SectionService {
     return this.sectionModel.findOne({ where: { id } });
   }
 
-  getWithParent(id) {
-    return this.sectionModel.findOne({
-      where: { id },
-      include: [
-        {
-          model: Category,
-        },
-      ],
-    });
-  }
-
   async getWithChildren(id) {
     const categoryDB = await this.sectionModel.findOne({
       where: { id },
@@ -54,24 +44,14 @@ export class SectionService {
     }
 
     const category = categoryDB.dataValues;
-    const childCategoriesIDs = JSON.parse(category.subcategories);
-    
-    if (!childCategoriesIDs || childCategoriesIDs.length == 0) {
-      return category;
-    }
-
-    const childCategories = await this.sectionModel.findAll({
+    const childCategories = await CategoriesCategories.findAll({
       where: {
-        id: [childCategoriesIDs],
+        parentCategory: category.id,
       },
     });
 
-    if(!childCategories){
-      return category;
-    }
-    
-    category.subcategories = childCategories;
-    return category;
 
+    childCategories.push(category);
+    return childCategories;
   }
 }
