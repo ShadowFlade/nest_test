@@ -28,5 +28,5 @@ export class Section extends Model {
   slug:string;
 
   @BelongsToMany(() => Product, () => ProductsSections)
-  categories!: ISection[];
+  sections!: ISection[];
 }

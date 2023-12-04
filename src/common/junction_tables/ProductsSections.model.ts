@@ -10,16 +10,16 @@ import { Product } from '../../catalog/models/product.model.js';
 
 dotenvConfig();
 
-@Table({ modelName: 'products_categories', timestamps: false })
+@Table({ modelName: 'products_sections', timestamps: false })
 export class ProductsSections extends Model<ProductsSections> {
   @Column({ primaryKey: true, autoIncrement: true })
   id: number;
 
   @ForeignKey(() => Product)
   @Column
-  productId!: number;
+  productID!: number;
 
   @ForeignKey(() => Section)
   @Column
-  categoryId!: number;
+  sectionID!: number;
 }

@@ -14,7 +14,7 @@ module.exports = {
         type: Sequelize.INTEGER,
         allowNull: true,
       },
-      productCategory: {
+      sectionID: {
         type: Sequelize.INTEGER,
         allowNull: true,
       },

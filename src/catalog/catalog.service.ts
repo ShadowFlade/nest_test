@@ -16,23 +16,32 @@ export class CatalogService {
     private readonly sectionModel: typeof Section,
   ) {}
   async getProducts(filter?: { [key: string]: string }) {
-    let productIDs = [];
-    
-    if (filter.productCategories) {
-      productIDs.push(...(await this.getProductsBySection(filter)));
+
+    if (filter.productCategory) {
+      const section = await Section.findOne({where:{
+        slug:filter.productCategory
+      }})
+      if(!section){
+        return;
+      }
+      const sectionID = section.dataValues.id;
+      return await Product.findAll({
+        include: {
+          model: Section,
+          where: {id:sectionID}
+        }
+      });
     }
+
+    return await Product.findAll();
     
-    return Product.findAll({
-      where: {
-        id: productIDs,
-      },
-    });
+ 
   }
 
   async getProductsBySection(sections) {
     return await ProductsSections.findAll({
       where: {
-        categoryId: sections,
+        sectionID: sections,
       },
     });
   }

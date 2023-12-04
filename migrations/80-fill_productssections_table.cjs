@@ -2,65 +2,65 @@
 const productCategories = [
     {
         productID:1,
-        productCategory:28
+        sectionID:28
     },
     {
         productID:1,
-        productCategory:77
+        sectionID:77
     },
 
     {
         productID:2,
-        productCategory:30
+        sectionID:30
     },
 
     {
         productID:2,
-        productCategory:40
+        sectionID:40
     },
 
     {
         productID:3,
-        productCategory:32
+        sectionID:32
     },
 
     {
         productID:3,
-        productCategory:26
+        sectionID:26
     },
 
     {
         productID:4,
-        productCategory:67
+        sectionID:67
     },
 
     {
         productID:5,
-        productCategory:90
+        sectionID:90
     },
 
     {
         productID:6,
-        productCategory:77
+        sectionID:77
     },
 
     {
         productID:6,
-        productCategory:28
+        sectionID:28
     },
 
     {
         productID:7,
-        productCategory:28
+        sectionID:28
     },
 
     {
         productID:8,
-        productCategory:28
+        sectionID:28
     },
     {
         productID:8,
-        productCategory:77
+        sectionID:77
     },
 ]
 /** @type {import('sequelize-cli').Migration} */

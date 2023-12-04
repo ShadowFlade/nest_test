@@ -46,5 +46,5 @@ export class Product extends Model {
   updatedAt
 
   @BelongsToMany(() => Section, () => ProductsSections)
-  categories!: ISection[];
+  sections!: ISection[];
 }
