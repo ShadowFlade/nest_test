@@ -4,6 +4,7 @@ import {sequelize} from '../../../config/db.js';
 import { BelongsToMany, Column, Model, Table } from 'sequelize-typescript';
 import { Product } from '../../catalog/models/product.model.js';
 import { ProductsSections } from '../../common/junction_tables/ProductsSections.model.js';
+import { SectionsSections } from '../../common/junction_tables/SectionsSections.js';
 
 dotenvConfig();
 
@@ -29,4 +30,10 @@ export class Section extends Model {
 
   @BelongsToMany(() => Product, () => ProductsSections)
   sections!: ISection[];
+
+  @BelongsToMany(() => Section, () => SectionsSections)
+  childCategories!: ISection[];
+
+  @BelongsToMany(() => Section, () => SectionsSections)
+  parentCategories!: ISection[];
 }

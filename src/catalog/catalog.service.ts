@@ -17,7 +17,7 @@ export class CatalogService {
   ) {}
   async getProducts(filter?: { [key: string]: string }) {
 
-    if (filter.productCategory) {
+    if (filter && filter.productCategory) {
       const section = await Section.findOne({where:{
         slug:filter.productCategory
       }})

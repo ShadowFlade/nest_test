@@ -11,6 +11,7 @@ import { Product } from './catalog/models/product.model.js';
 import { Section } from './section/models/section.model.js';
 import { IDialect } from './main.js';
 import { ProductsSections } from './common/junction_tables/ProductsSections.model.js';
+import { SectionsSections } from './common/junction_tables/SectionsSections.js';
 const rootObj = {
   dialect: process.env.DB_DIALECT as IDialect,
   host: process.env.DB_HOST,
@@ -18,7 +19,7 @@ const rootObj = {
   username: process.env.DB_LOGIN,
   password: process.env.DB_PASSWORD,
   database: process.env.DB_NAME,
-  models: [User, Product, Section, ProductsSections],
+  models: [User, Product, Section, ProductsSections, SectionsSections],
 };
 @Module({
   imports: [

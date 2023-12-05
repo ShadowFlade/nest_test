@@ -1,7 +1,7 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { Section } from './models/section.model.js';
 import { InjectModel } from '@nestjs/sequelize';
-import { CategoriesCategories } from '../common/junction_tables/SectionsSections.js';
+import { SectionsSections } from '../common/junction_tables/SectionsSections.js';
 
 @Injectable()
 export class SectionService {
@@ -35,23 +35,22 @@ export class SectionService {
   }
 
   async getWithChildren(id) {
-    const categoryDB = await this.sectionModel.findOne({
-      where: { id },
-    });
-
-    if (!categoryDB) {
-      throw new HttpException('NOT FOUND', HttpStatus.NOT_FOUND);
+    const childCategories = await SectionsSections.findAll({
+      where:{
+        parentCategory: id
+      }
+    })
+    if(!childCategories){
+      return;
     }
-
-    const category = categoryDB.dataValues;
-    const childCategories = await CategoriesCategories.findAll({
+    const ids = childCategories.map(item=>item.dataValues.childCategory);
+    console.log(ids,' ids');
+    const categories = Section.findAll({
       where: {
-        parentCategory: category.id,
-      },
-    });
+        id: ids
+      }
+    })
 
-
-    childCategories.push(category);
-    return childCategories;
+    return categories;
   }
 }
