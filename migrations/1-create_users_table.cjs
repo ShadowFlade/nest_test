@@ -42,7 +42,7 @@ module.exports = {
       },
       refreshToken: {
         allowNull: true,
-        type: Sequelize.STRING,
+        type: Sequelize.STRING(500),
       }
     });
   },

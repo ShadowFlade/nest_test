@@ -44,7 +44,6 @@ export class SectionService {
       return;
     }
     const ids = childCategories.map(item=>item.dataValues.childCategory);
-    console.log(ids,' ids');
     const categories = Section.findAll({
       where: {
         id: ids

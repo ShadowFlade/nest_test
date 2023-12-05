@@ -12,7 +12,7 @@ export type IProduct = {
   product_category:string
 }
 
-@Controller('section')
+@Controller('sections')
 export class SectionsController {
   constructor(private readonly SectionService: SectionService, private readonly CatalogService: CatalogService) {}
   
